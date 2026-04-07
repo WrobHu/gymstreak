@@ -81,7 +81,7 @@ function weekTrainCount(train: string[]): number {
 
 // ==================== GOALS ====================
 function updGoals(goals: Goal[], data: D, ms: number): Goal[] {
-  const t = td(); const wk = weekDates(t); const ts = new Set(data.trainingDays); const ns = new Set(data.noFastfoodDays);
+  const t = td(); const wk = weekDates(t); const ts = new Set(data.trainingDays);
   const mon = gm(t);
   const wt = wk.filter(d => ts.has(d)).length;
   const mt = data.trainingDays.filter(d => gm(d) === mon).length;
