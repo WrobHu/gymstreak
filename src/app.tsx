@@ -291,7 +291,7 @@ export function App(){
 
   {page==='weight'&&<WPage entries={data.weightEntries} done={hasWt} onAdd={doWt} onBack={()=>setPage('home')}/>}
   {page==='goals'&&<GPage goals={data.goals} onAdd={addGoal} onDel={delGoal} onInc={incGoal} onBack={()=>setPage('home')}/>}
-  {page==='tennis'&&<TPage sessions={data.tennisSessions} tennisDays={data.tennisDays} hasTodayTennis={hasTennis} onTrain={doTennis} onAdd={addTennisMatch} jt={jt} onBack={()=>setPage('home')}/>}
+  {page==='tennis'&&<TPage sessions={data.tennisSessions} hasTodayTennis={hasTennis} onTrain={doTennis} onAdd={addTennisMatch} jt={jt} onBack={()=>setPage('home')}/>}
   {page==='profile'&&<ProfilePage data={data} ms={ms} ss={ss} setPage={setPage}/>}
   {page==='settings'&&<SPage name={data.name} onName={n=>setData(d=>({...d,name:n}))} onReset={()=>{localStorage.removeItem('gs4');setData(DEF);setPage('onboarding');}} onBack={()=>setPage('profile')}/>}
 
@@ -390,7 +390,7 @@ function GPage({goals,onAdd,onDel,onInc,onBack}:{goals:Goal[];onAdd:(g:Goal)=>vo
   </div>;
 }
 
-function TPage({sessions,tennisDays,hasTodayTennis,onTrain,onAdd,jt,onBack}:{sessions:TM[];tennisDays:string[];hasTodayTennis:boolean;onTrain:()=>void;onAdd:(m:TM)=>void;jt:string|null;onBack:()=>void}){
+function TPage({sessions,hasTodayTennis,onTrain,onAdd,jt,onBack}:{sessions:TM[];hasTodayTennis:boolean;onTrain:()=>void;onAdd:(m:TM)=>void;jt:string|null;onBack:()=>void}){
   const[sf,setSf]=useState(false);const[opp,setOpp]=useState('');const[ms,setMs]=useState('');const[os,setOs]=useState('');
   const[won,setWon]=useState(true);const[notes,setNotes]=useState('');const[exp,setExp]=useState<string|null>(null);
   function hAdd(){if(!opp.trim())return;onAdd({id:rid(),date:td(),opponent:opp.trim(),myScore:ms.trim(),oppScore:os.trim(),won,notes:notes.trim()});setOpp('');setMs('');setOs('');setWon(true);setNotes('');setSf(false);}
